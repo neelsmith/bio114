@@ -1,11 +1,11 @@
 ---
 layout: page
-parent: "Biology 114: supplementary material"
-title: "Preflight checklist"
+parent: "Prerequisites and setup"
+title: "Testing your installation"
 nav_order: 1
 ---
 
-# Preflight checklist
+# Testing your installation
 
 We will take a day in class together to test that your personal machine is ready to go for all our hands-on exercises.
 
@@ -30,7 +30,7 @@ You can exit the REPL by typing `exit()` (followed by return).
 
 Open a Julia REPL.  Type `]` to enter package mode where you can add further packages to the core Julia languages. Because this is the first time you've used Julia, it will take some time for your system to download and compile everything, but it will be much faster to update or use packages you've already installed.
 
-Don't worry about following the logic of these tests:  we'll learn in the first workshop session how to manage packages.  For this tuneup, we just want to make sure a few things are preinstalled and running correctly so we don't have to spend a lot of time just getting set up.  
+Don't worry yet about following the logic of these tests:  we'll learn in our first hands-on session how to manage packages.  For this test, we just want to make sure a few things are preinstalled and running correctly so that we don't have to spend a lot of time just getting set up.  
 
 At the `pkg>` prompt, paste in or type the following lines:
 

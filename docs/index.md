@@ -10,11 +10,6 @@ has_toc: false
 
 This web site serves material used in hands-on activities to explore change through time -- evolution -- of cultural material.
 
-## Getting ready to go
-
-- [Technical prerequisites](./techprereqs/): do this *before* coming to class
-- [Testing your installation](./tuneup/): we'll devote a class to making sure everything works
-
-## Looking at the Gettysburg Address
-
-## Comparing translation of the Bible
+- [Getting ready to go](./prereqs/): technical prerequisites that we'll verify in class together
+- Looking at style in the Gettysburg Address
+- Comparing translation of the Bible
