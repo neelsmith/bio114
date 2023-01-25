@@ -1,14 +1,13 @@
 ---
 layout: page
-parent: "Why we code"
-title: "Drop-in session: preflight checklist"
+parent: "Biology 114: supplementary material"
+title: "Preflight checklist"
 nav_order: 1
 ---
 
-# Drop-in session: preflight checklist
+# Preflight checklist
 
-
-On Friday, April 8, we will have a drop-in session where you can test that your personal machine is ready to go for all three workshop sessions.
+We will take a day in class together to test that your personal machine is ready to go for all our hands-on exercises.
 
 
 
