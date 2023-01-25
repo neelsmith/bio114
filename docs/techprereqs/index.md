@@ -17,5 +17,4 @@ If you're on Mac OS, open VS Code, open the Command Palette (`Cmd+Shift+P`) and 
 
 One theme of our work will be that we don't do computational work without designing a way to test, so 
 
-
-on Friday, April 8, we will have a drop-in session where you can [test that your personal machine is ready to go](../tuneup/) for all three workshop sessions.
+We will devote one class session to [testing that your personal machine is ready to go](../tuneup/) for all of our hands-on exercises.
