@@ -124,7 +124,7 @@ md"""### Self quiz
 The value of the preceding expression `poem == "Iliad"` is `true`.  Note that it is *not* a quoted String.  In the following cell, replace `missing` with a Julia expression to find out the type of the value `true`"""
 
 # ╔═╡ 61f6a990-31ab-4e38-bb91-372a60dbe5e4
-truthy = missing
+truthy = typeof(true)
 
 # ╔═╡ aae31cae-a87c-4479-a7fc-b942d2d7dff2
 if !@isdefined(truthy)
@@ -300,7 +300,7 @@ When you've got the definition right, the value of `screaming(poem)` should be `
 """
 
 # ╔═╡ 8931b0c5-9794-4909-ad18-03a390ffc832
-screaming = (s, n = 2) -> missing
+screaming = (s, n = 2) -> uppercase(s) * repeat("!", n)
 
 
 # ╔═╡ c97a3107-a218-4f7b-9128-bbac0a9b639d
@@ -384,7 +384,7 @@ In the final cell above, our `wordlist` function produced a type we have not see
 wordlist("I have miles to go before I sleep.") |> typeof
 
 # ╔═╡ 86034c4d-0a34-4580-a3d5-737eba514d1b
-md"""Much of your scholarly work will involve working with lists like Vectors. The nextbook notebook in this series will  introduce you to the basics of working with collections of data in Julia.
+md"""Much of your scholarly work will involve working with lists like Vectors.  The Pluto [notebook for session 1b](https://neelsmith.github.io/why_we_code/notebooks/session1/session1bnb.html) will take introduce you to the basics of working with collections of data in Julia.
 
 
 """
