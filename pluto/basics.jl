@@ -10,11 +10,14 @@ begin
 	using PlutoTeachingTools
 end
 
+# ╔═╡ cf6d1a09-153f-4b33-8faa-771db0e0f237
+md"""*Last modified*: **Jan. 31, 2023**"""
+
 # ╔═╡ 777185cc-b116-11ec-218d-453c13034275
 md"""# The nouns and verbs of the Julia language
 
 
-In our first session, we'll introduce some essential ideas for computational study in the humanities.  Working in the Julia REPL (Julia's interactive Read-Evaluate-Print Loop), we'll start by getting familiar with the expressing ideas in Julia using the "nouns and verbs" of the Julia language, *objects* and *functions*.
+In our first session, we'll introduce some essential ideas for scholarly work supporeted by computation.  Working in the Julia REPL (Julia's interactive Read-Evaluate-Print Loop), we'll start by getting familiar with expressing ideas in Julia using the "nouns and verbs" of the Julia language: *objects* and *functions*.
 
 Using the interactive REPL is one of the best ways to get familiar with Julia, and we'll do that in our workshop, but you can use this  Pluto notebook to review, and to experiment with some self-correcting examples.
 
@@ -97,7 +100,7 @@ In Julia, we can create a name for an object, called a *variable*, in an *assign
 poem = "Iliad"
 
 # ╔═╡ 54eb0cab-c557-45fa-9a6a-9edb0f461083
-md"""You can read the preceding in cell in English as "*Assign the value* `"Iliad"` *to the variable name* `poem`." """
+md"""You can read the preceding in cell in English as "*Assign the value* `"Iliad"` *to the variable name* `poem`."  or "*The variable* `poem` *is assigned the value* `"Iliad"`. """
 
 # ╔═╡ 9ee09c3d-0301-46e5-8bf3-65a895528580
 md"""We have in effect added the expression `poem` to the Julia language, and can use it like any other expression.  For example, let's check what type it is."""
@@ -112,7 +115,7 @@ md"""
 """
 
 # ╔═╡ d5cadcdb-85e3-4a66-980d-2ef936d26746
-md"""Note that the equals sign means *assignment* in Julia.  Two equals signs create different kind of expression meaning *equality*, as we see in the following cell.
+md"""Note that the equals sign means *assignment* in Julia.  Two equals signs create different kind of expression meaning *equality*, as we see in the following cell.  You could read this cell as *"The value of the variable* `poem` *equals* `"Iliad"`.
 """
 
 # ╔═╡ 288cf4a9-6f87-4c10-884f-7c44d8d73e27
@@ -185,7 +188,7 @@ md"""
 
 # ╔═╡ 848ca6e5-05e0-4a22-9ddf-2eb4e27edc1e
 md"""
-We'll see a few of Julia's many functions for working with textual data in this workshop.  One example is the function `length`. What do you think its result represents?
+We'll see a few of Julia's many functions for working with textual data in this session.  One example is the function `length`. What do you think its result represents?
 """
 
 # ╔═╡ b6cf2be0-0382-4cc2-8a82-8a58b4197ffc
@@ -209,8 +212,14 @@ poem |> typeof
 # ╔═╡ ccd4fe6a-f3d4-405d-a077-9ad5b96e16ae
 length(poem) |> typeof
 
+# ╔═╡ 975d9705-63f0-46a5-b414-e5dea42d8778
+md"""You can keep string these along, so long as each function only needs one argument."""
+
+# ╔═╡ 2367871b-a8ad-4f1c-865f-02cc22b38c99
+poem |> length |> typeof
+
 # ╔═╡ 30d20326-1008-4885-837c-c335e1e0cd71
-md"""By way of examples, we'll just mention a couple of functions now that produce new strings. The `lowercase` and `uppercase `functions take a single argument and produce a String object with all letters converted to lower or upper case, respecitvely.  (These are very handy if you want to do case-insensitive comparisons of string values.)
+md"""By way of examples, we'll just mention now a couple of functions that produce new strings. The `lowercase` and `uppercase `functions take a single argument and produce a String object with all letters converted to lower or upper case, respecitvely.  (These are very handy if you want to do case-insensitive comparisons of string values.)
 """
 
 # ╔═╡ 215e0ca7-7b87-45b1-a3f9-e1da766a2fe1
@@ -242,7 +251,7 @@ As you see in the next cell, Julia identifies this as a function.
 s -> string(s,"!!")
 
 # ╔═╡ d6539b59-6159-49fb-9620-22ea18abcd60
-md"""We can assign functions to names using `=`, just as we did with other objects.  Let's call our new function `exclaim`.
+md"""The function in the previous cell has no name, but, just as we did with objects, we can assign functions to names using `=`.  Let's call our new function `exclaim`.
 """
 
 # ╔═╡ cc7ec4d3-8a85-4146-8d6a-cf3efff09f91
@@ -258,7 +267,7 @@ exclaim("Why code? Is that a question?")
 # ╔═╡ f5af2a50-5127-4a35-ae61-ac8ea3978e4b
 md"""Let's improve our function. Sometimes you might want to be more or less emphatic.  Let's add a second parameter giving the number of exclamation points we want to include.
 
-We can use this parameter with a Julia function called `repeat` that will, as you might guess, repeats a string a given number of times, as you can see here:
+We can use this parameter with a Julia function called `repeat` that, as you might guess, repeats a string a given number of times, as you can see in this example:
 """
 
 # ╔═╡ 1945f586-54e4-4ecb-bb3a-defd84da4986
@@ -280,7 +289,7 @@ Julia allows us to assign a default value to parameters in the parameter left on
 exclaim_n = (s, n = 2) -> string(s, repeat("!", n))
 
 # ╔═╡ 59f02fb7-73ea-4594-a262-f43f1ded2b40
-md"""Now we can call our function with two parameters to include a specified number of exclamation points, or, if we include only one parameter, we'll see the default behavior."""
+md"""Now we can call our function with two parameters to include a specified number of exclamation points.  If we include only one parameter, we'll see the default behavior."""
 
 # ╔═╡ a42fb141-6a21-4893-b64f-d50fd30b8c44
 exclaim_n("What?", 4)
@@ -291,7 +300,7 @@ exclaim_n("What?")
 # ╔═╡ 5eeb5462-75d1-458c-997e-999f1c3d4c35
 md"""### Self quiz
 
-Replace `missing` in the definition of the `screaming` function so that it
+In the following definition of a function named `screaming`, replace `missing` so that the function:
 
 1. makes the parameter `s` entirely uppercase
 2. appends `n` exclamation points to the uppercase version of `s`
@@ -321,7 +330,7 @@ end
 
 # ╔═╡ 26713ec0-a5a1-4eb1-ab99-6211dcbd5bbe
 md"""### Defining functions: longer-form syntax
-The arrow syntax is handy for defining a one-line function, but Julia offers a longer form for writing more complex named functions.  This form begins with the key word `function` followed by the function name and a list of any parameters in parentheses.  You can then write as many lines as you want until the key word `end` appears on a separate line.  The last line before `end` is the value of the function.
+The arrow syntax is handy for defining a one-line function, but Julia offers a longer form for writing more complex named functions.  This form begins with the key word `function` followed by the function name and a list of any parameters in parentheses.  You can then write as many lines as you want until the key word `end` appears on a separate line.  The last line before `end` is the return value of the function.
 
 One nice feature of the long-form syntax is that you can precede the line with the `function` keyword with a string value, and Julia will treat that as documentation for the function.  Not only can you add functions to your personal Julia: you can add to its automatically compiled documentation!  This is a good practice to follow, and we'll do so regularly.
 
@@ -332,7 +341,7 @@ function MY_FUNCTION(ARGUMENT1, ARGUMENT2)
 end
 ```
 
-Let's use the long-form syntax to create a simple new function.  We'll draw on three common Julia functions, and pacakge them up to create an alphabetized word list of all the words in a text. The three functions are:
+Let's use the long-form syntax to create a simple new function.  We'll draw on three common Julia functions, and bundle them up to create an alphabetized word list of all the words in a text. The three functions are:
 
 **1**. `split`  splits up a string of characters into a list of strings;  by default, it splits on whitespace, so if whitespace separates words in your text, you have converted your text to a list of words.
 """
@@ -350,7 +359,7 @@ split("I have miles to go before I sleep.") |> unique
 
 # ╔═╡ 59d27edd-aeef-4def-9e50-c2fef577b81f
 md"""
-**3** `sort` (surprise!) sorts a list of values.  For Strings, the default is to sort them alphabetically.  Notice that in Julia, all upper case values sort before lower case values!
+**3** `sort` sorts a list of values  (surprise!).  For Strings, the default is to sort them alphabetically.  Notice that since Julia uses the Unicode sequence of characters to sort them, all upper case values sort before lower case values!
 """
 
 # ╔═╡ c279d031-fdaf-4de7-9ceb-de29363260a5
@@ -641,6 +650,7 @@ version = "17.4.0+0"
 
 # ╔═╡ Cell order:
 # ╟─a2cb957f-c8eb-4e0f-a1e5-3e37f2b7bd27
+# ╟─cf6d1a09-153f-4b33-8faa-771db0e0f237
 # ╟─777185cc-b116-11ec-218d-453c13034275
 # ╟─7f8af184-9753-47de-8660-f07990f247d9
 # ╠═efe0e3ed-0c14-48d3-a0fd-d65dba74ee2f
@@ -684,6 +694,8 @@ version = "17.4.0+0"
 # ╟─118a9480-f537-4474-b2b2-5d496abe67cc
 # ╠═43e34a4f-9d13-4953-9eca-010ef3ec8815
 # ╠═ccd4fe6a-f3d4-405d-a077-9ad5b96e16ae
+# ╟─975d9705-63f0-46a5-b414-e5dea42d8778
+# ╠═2367871b-a8ad-4f1c-865f-02cc22b38c99
 # ╟─30d20326-1008-4885-837c-c335e1e0cd71
 # ╠═215e0ca7-7b87-45b1-a3f9-e1da766a2fe1
 # ╠═a4c323da-b89e-4d9e-8806-872f86697cc3
