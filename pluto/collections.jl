@@ -17,7 +17,7 @@ using Downloads
 md"""# Basics for research: collections of data
 
 
-We'll continue to work in the Julia REPL throughout the first session of our workshop. Use this  Pluto notebook to review, or to experiment with some self-correcting examples.
+We'll continue to work in the Julia REPL in this exercise. Use this  Pluto notebook to review, or to experiment with some self-correcting examples.
 
 !!! note "Summary of content in this notebook"
 
