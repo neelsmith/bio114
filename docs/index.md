@@ -11,7 +11,10 @@ has_toc: false
 This web site serves material used in hands-on activities to explore change through time -- evolution -- of cultural material.
 
 - [Getting ready to go](./prereqs/): technical prerequisites and setup that we'll verify in class together
-- [Data models and data structures](./gettysburg/): looking at style in the Gettysburg Address
-- [Nouns and verbs of the Julia language](./julia1/): some basics of the Julia language in a self-testing Pluto notebook
+- Basics of the Julia language:
+    - [Nouns and verbs of the Julia language](./julia/nouns-verbs/): some basics of the Julia language in a self-testing Pluto notebook
+    - Basics of scholarly research: [working with collections of data](./julia/collections/) (including a self-testing Pluto notebook)
+- [Data models and data structures](./gettysburg/): 
+    - homework assignment: [modelling style in the Gettysburg Address](../gettysburg/hw/)
 - Comparing data: 20 translations of the Bible
 - [Constructing and interpreting trees](./languages/): linguistic evolution

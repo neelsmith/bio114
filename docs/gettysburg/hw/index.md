@@ -1,15 +1,12 @@
 ---
 layout: page
-title: "Data models and data structures"
-nav_order: 6
-has_children: true
-has_toc: false
+title: "Homework assignment: modelling the Gettysburg Address"
+parent: "Data models and data structures"
+nav_order: 1
+
 ---
 
-# Data models and data structures
-
-
-## Background: the Gettysburg Address
+# Homework assignment: modelling the Gettysburg Address
 
 Our first hands-on exercise will look at Abraham Lincoln's Gettysburg Address. 
 
