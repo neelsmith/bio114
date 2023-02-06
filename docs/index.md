@@ -16,5 +16,6 @@ This web site serves material used in hands-on activities to explore change thro
     - Basics of scholarly research: [working with collections of data](./julia/collections/) (including a self-testing Pluto notebook)
 - [Data models and data structures](./gettysburg/): 
     - homework assignment: [modelling style in the Gettysburg Address](../gettysburg/hw/)
+    - hands-on assignment: Julia notebook to [classify rhetorical style](./gettysburg/assignment1.jl.html)
 - Comparing data: 20 translations of the Bible
 - [Constructing and interpreting trees](./languages/): linguistic evolution
