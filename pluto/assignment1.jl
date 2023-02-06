@@ -29,6 +29,15 @@ end
 # This function is part of the `PlutoUI` pacakge:
 TableOfContents()
 
+# ╔═╡ fa6cc51d-4c99-4ec8-a292-27575abdd96d
+md"""
+!!! alert "Assignment: Classifying Rhetoric"
+
+    1. Define a data model with at least two features, and implement it to compare Lincoln and Everett's orations at Gettysburg in 1863.  The notebook guides you through the implementation of one feature, the frequency or proportion of long words in the orations.
+    2. Take advantage of any interactive widgets (like numeric sliders) in your notebook to explore your data by experimenting with different values for parameters.
+    3. When you have completed all missing sections of code and discussion, save your notebook as a file with a name ending in `.jl` (for *Julia*), and upload it to Canvas,
+"""
+
 # ╔═╡ f0c5b969-8cb6-4479-96d2-48f3718c0dc5
 md"""## Publication"""
 
@@ -37,7 +46,7 @@ md"""
 *Authors*: **-->ALL NAMES OF COLLABORATORS HERE<--**
 
 
-*Date last modified*: **Feb. 5, 2023** **-->UPDATE THIS DATE WHEN YOU SUBMIT YOUR ASSIGNMENT<--**
+*Date last modified*: **Feb. 6, 2023** **-->UPDATE THIS DATE WHEN YOU SUBMIT YOUR ASSIGNMENT<--**
 
 """
 
@@ -56,9 +65,11 @@ This notebook defines a model and applies it to two speeches: Lincoln and Everet
 
 # ╔═╡ 9ce3acd3-61b8-4c34-a62e-5cdec7e56710
 md"""
-> If you'd like to read Cicero's discussion of the Plain, Simple and Grand Styles, check the following box!
->
-> Notice that Cicero doesn't really define the styles in any detail: he just gives examples of each. In this interactive notebook, we want to look at concrete features that could help us recognize each style.
+!!! note "Cicero on rhetorical style"
+
+    If you'd like to read Cicero's discussion of the Plain, Simple and Grand Styles, check the following box!
+
+    Notice that Cicero doesn't really define the styles in any detail: he just gives examples of each. In this interactive notebook, we want to look at concrete features that could help us recognize each style.
 """
 
 # ╔═╡ 37ec1fad-7838-429c-ab80-4ee0dc4560d3
@@ -123,6 +134,21 @@ function longword(w, breakpoint)
 	missing
 end
 
+# ╔═╡ 146d0f24-973d-4083-a537-7db5ad563336
+begin
+	longtest = longword("the", 5)
+	if ismissing(longtest)
+		still_missing()
+	elseif ! isa(longtest,Bool)
+		keep_working(md"Remember that your function should end with a test that gives a Boolean answer of `true` or `false`")
+		
+	elseif longtest == true || longword("absolutely", 3) == false
+		keep_working(md"Something's not right with your comparison. Try testing your function in another cell: e.g., does it find tha *the* is a short word if your cutoff is 5?")
+	else
+		correct()
+	end
+end
+
 # ╔═╡ 86f3361c-3e31-4e8c-82f1-15a15fa53e98
 md"""Words longer than the value you set on this slider will be considered "long".
 
@@ -184,14 +210,30 @@ md"""## Conclusions
 # ╔═╡ 8150ea1f-0e9f-436c-bbbc-14662f4d04a0
 md"""### Classifying Lincoln and Everett"""
 
+# ╔═╡ fc9dab4c-1fdc-433f-93f1-65e3ea802ad4
+md"""
+Do your results suggest a classification for Lincoln and Everett's speeches?
+
+**==> ADD YOUR CONCLUSIONS HERE <==**
+"""
+
 # ╔═╡ 71823f6e-015e-46bb-8ad0-fccae04dd799
 md"""### Next steps"""
 
+# ╔═╡ f185587c-96cb-4857-b9c4-888e6a31bae6
+md"""!!! note "Next steps"
+
+    Scholarly work doesn't end because your project is completed.  Your conclusion should normally or always include your thoughts on how to improve or go beyond what you've done in this project.
+
+    This could include your ideas about:
+
+    - how to improve the model.  (E.g., do you think there are more informative features you could add?)
+    - how to improve the implementation of the model. (E.g., you might still have features that work with words, but want to improve your implementation of the `words` function.)
+"""
+
 # ╔═╡ 122a84a8-a85e-4fc2-8528-31078b05dfde
 md"""
-Improving the model?
-
-Improving the implementation?
+**==> ADD YOUR CLOSING COMMENTS HERE <==**
 """
 
 # ╔═╡ 7cc5f92d-3aff-4679-b8b3-a32ec842817b
@@ -234,6 +276,18 @@ everett_text = string_dl(everett_url)
 # ╔═╡ 1f3c4d0f-a2b4-42b8-a94c-da64f8645d4d
 everett_words = words(everett_text)
 
+# ╔═╡ 02a7dee6-3a0b-4302-be36-6e1d06388771
+begin
+	if ismissing(lincoln_long) || ismissing(everett_long)
+		still_missing()
+	elseif length(lincoln_long == length(lincoln_words)) || 
+			length(everett_long == length(everett_words))
+		keep_working(md"Your filter needs to eliminate short words: it's not doing that yet")
+	else
+		correct()
+	end
+end
+
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
 [deps]
@@ -254,7 +308,7 @@ PLUTO_MANIFEST_TOML_CONTENTS = """
 
 julia_version = "1.8.4"
 manifest_format = "2.0"
-project_hash = "30d6e67da1ff2407093faa0450e374d662cdc7fa"
+project_hash = "2a3d1696a9b735c9022680f9e69e82b1cef14a63"
 
 [[deps.AbstractPlutoDingetjes]]
 deps = ["Pkg"]
@@ -1263,6 +1317,7 @@ version = "1.4.1+0"
 # ╔═╡ Cell order:
 # ╟─5c11507f-89ac-44ae-8a60-556a536df435
 # ╟─7378e7de-7731-460c-a8a2-f72eeea6cc92
+# ╟─fa6cc51d-4c99-4ec8-a292-27575abdd96d
 # ╟─f0c5b969-8cb6-4479-96d2-48f3718c0dc5
 # ╟─558f05dd-07db-4413-bd39-1fa504882465
 # ╟─721993ff-db6a-498a-b4ed-d9131d47de36
@@ -1287,12 +1342,14 @@ version = "1.4.1+0"
 # ╠═1f3c4d0f-a2b4-42b8-a94c-da64f8645d4d
 # ╟─81525041-dc5a-4ae3-b5f7-62cb04fdcabc
 # ╠═c391c1d9-f2c6-4e9c-913c-458a9f5a923d
+# ╟─146d0f24-973d-4083-a537-7db5ad563336
 # ╟─86f3361c-3e31-4e8c-82f1-15a15fa53e98
 # ╠═c62f6987-ab2f-4c4e-b67f-7166fd8974ce
 # ╠═045757b6-67af-4fed-8773-5f78a0856691
 # ╟─4862e5a0-d8fb-46f9-97de-ef55f12b02be
 # ╠═295d06d8-1327-4c16-ab73-85f53f787cfe
 # ╠═45135246-abee-4ee1-8da6-b10ca50acf4e
+# ╟─02a7dee6-3a0b-4302-be36-6e1d06388771
 # ╟─e97f5bf9-fe32-48fa-ac2e-87fe0f094c6f
 # ╠═4136bf8d-8ce4-4fa2-b575-0b72d4d4ecc2
 # ╠═f693cd96-b0d4-43e4-9323-b9d563560907
@@ -1304,8 +1361,10 @@ version = "1.4.1+0"
 # ╠═dc2a1c0c-9571-43e0-bbe4-78a666401bc5
 # ╟─dcd01a30-b889-456b-9e91-cc4304a64ac7
 # ╟─8150ea1f-0e9f-436c-bbbc-14662f4d04a0
+# ╠═fc9dab4c-1fdc-433f-93f1-65e3ea802ad4
 # ╟─71823f6e-015e-46bb-8ad0-fccae04dd799
-# ╟─122a84a8-a85e-4fc2-8528-31078b05dfde
+# ╟─f185587c-96cb-4857-b9c4-888e6a31bae6
+# ╠═122a84a8-a85e-4fc2-8528-31078b05dfde
 # ╟─7cc5f92d-3aff-4679-b8b3-a32ec842817b
 # ╟─5f680036-467a-4f1d-959c-664c8847a922
 # ╟─2cd587f6-a536-11ed-0b34-5170abae9185
