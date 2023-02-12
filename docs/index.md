@@ -18,7 +18,7 @@ This web site serves material used in hands-on activities to explore change thro
     - homework assignment: [modelling style in the Gettysburg Address](../gettysburg/hw/)
     - example analyses from class:
         - comparing [usage of pronouns](./notebooks/pronouns.jl.html)
-        - looking at [sentence length]
+        - looking at [sentence length](./notebooks/sentences.jl.html)
     - hands-on assignment: Julia notebook to [classify rhetorical style](./gettysburg/assignment1.jl.html)
 - Comparing data: 20 translations of the Bible
 - [Constructing and interpreting trees](./languages/): linguistic evolution
