@@ -36,9 +36,6 @@ md"""*Length of text to generate (in words)* $(@bind iters Slider(50:50:500, sho
 
 *(re)generate*: $(@bind doit Button(\"Generate text\"))"""
 
-# ╔═╡ 084979e4-40f5-47b3-aa74-0b46df83a9f1
-@bind prompt TextField((40,8))
-
 # ╔═╡ aed6a1ce-b36d-4e7d-8f40-dd5e61189164
 md"""> Data"""
 
@@ -56,7 +53,7 @@ urlmenu = [
 md"""*Text to model*: $(@bind f Select(urlmenu)) *Size of n-gram*: $(@bind n NumberField(1:20))"""
 
 # ╔═╡ 940588f7-14c9-4fa1-b3e3-99cbd5ec1181
-md"""*Optional prompt*. The last *$(n) words* of your prompt must appear in the soruce corpus."""
+md"""*Optional prompt*. The last *$(n) words* of your prompt must appear in the source corpus."""
 
 # ╔═╡ e02a5553-36e5-4a99-bd5a-584fbd92d964
 """Read string contents of text at URL `u`.
@@ -115,14 +112,12 @@ function initialize(predictdict, startwords, windowsize)
 		end
 	
 	else
-		# Start words longer than windowsize
+		# Start words longer than windowsize when
 		#length(startwords) > windowsize
 		lastidx = length(startwords) - windowsize + 1
 		matched = filter(nglist) do v
 			v == startwords[lastidx:end]
 		end
-			#"Look at $(lastidx):$(windowsize): $(isempty(matched))"
-		#"$(predictdict[matched[1]]) from $(lastidx): $(matched) "
 		if isempty(matched)
 			initialvector = []
 			randkey = sample(nglist)
@@ -135,12 +130,11 @@ function initialize(predictdict, startwords, windowsize)
 		end
 		
 	end
-
 	
 end
 
 # ╔═╡ a37829de-5b3d-41dd-85b7-10a18f2f2f98
-"""Compute weighted frequencies for a vector of n grams.
+"""Compute sequences of tokens following n-grams.
 """
 function ngnext(nglist)
 	nextwords = Dict()
@@ -154,13 +148,10 @@ function ngnext(nglist)
 		end
 	end
 	nextwords
-	#weightresults = Dict()
 end
 
-
-
 # ╔═╡ 9dd5989a-340b-4834-a814-2e67baa28589
-predictions = isempty(ngrams) ? nothing : ngnext(ngrams)
+ngramsequences = isempty(ngrams) ? nothing : ngnext(ngrams)
 
 # ╔═╡ e2a30a85-1d67-4b17-9d84-36cdc2d60659
 """Compute weighted frequencies for Vector v.
@@ -176,21 +167,18 @@ function computeweights(v)
 		
 	end
 	map(item -> counts[item], v) |> FrequencyWeights
-
 end
 
 # ╔═╡ c053be30-c7ae-4fa5-adb8-f3c8538566a9
-"""Generate a text from data in `datadict`."""
+"""Generate a text with `compositionsize` tokens, using `datadict`,  a list of
+ n-grams and the next token following the n-gram.
+"""
 function predict(datadict, compositionsize, startstring = "")
 	keylist = keys(datadict) |> collect
 	ngsliver = length(keylist[1]) - 1	
 
 	userwords = filter(s -> !isempty(s), split(startstring))
 	composition = initialize(datadict, userwords, n)
-
-	
-	
-	# RESTORE THIS
 
 	for i in 1:compositionsize
 		context = composition[end - ngsliver:end]
@@ -204,13 +192,54 @@ function predict(datadict, compositionsize, startstring = "")
 	
 end
 
+# ╔═╡ a9f88d5c-e2b0-4582-9090-aab561ba5008
+html"""
+<br/>
+<br/>
+<br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+"""
+
+# ╔═╡ 78371f1c-7b30-489a-8666-5e82cfd14663
+md""" ## A scaled down example"""
+
+# ╔═╡ b4f535b1-3951-470b-b6c5-01cea2e0af32
+md"""*Size of n-gram*: $(@bind tinyn NumberField(1:20))"""
+
+# ╔═╡ b3782d37-aed8-410c-8dc9-14ec336107e3
+tinyngrams = slidingwindow(words, n = tinyn)[3000:6000]
+
+# ╔═╡ c37b659c-4795-40ed-91ca-c321274889f0
+tinyseq = ngnext(tinyngrams)
+
 # ╔═╡ 9093a822-2134-48f8-a4a1-d65da07cdd12
 let doit
 	if ! isempty(f)
-		"**Generated text**\n\n > " * predict(predictions, iters, prompt) |> Markdown.parse
-		#predict(predictions, iters, prompt)
+		"**Generated text**\n\n > " * predict(ngramsequences, iters, prompt) |> Markdown.parse
 	end
 end
+
+# ╔═╡ 3606abb2-2947-4e8c-9de6-c2f360da8224
+predict(tinyseq, 50, prompt) |> Markdown.parse
+
+# ╔═╡ f9e37363-b409-4931-9711-25592900219d
+#=
+begin
+	tinykeys = keys(tinyseq) |> collect
+	tinysliver = length(tinykeys[1]) - 1
+	context = tinyngrams[end - tinysliver:end]
+	nxtv = tinyngrams[context]
+end
+=#
+
+# ╔═╡ 084979e4-40f5-47b3-aa74-0b46df83a9f1
+# ╠═╡ disabled = true
+#=╠═╡
+@bind prompt TextField((40,8))
+  ╠═╡ =#
+
+# ╔═╡ 78431860-d5fd-4ec2-9692-910271ec5fbb
+prompt = "mind how long precisely—having little or no money"
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -232,9 +261,9 @@ StatsBase = "~0.33.21"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.8.4"
+julia_version = "1.8.5"
 manifest_format = "2.0"
-project_hash = "1cabf32e62bf631e1dbbb4908c0f84e40903af90"
+project_hash = "0a997c9cdfa0d8be45613ad266dbe4c92012f088"
 
 [[deps.ANSIColoredPrinters]]
 git-tree-sha1 = "574baf8110975760d391c710b6341da1afa48d8c"
@@ -670,18 +699,26 @@ version = "17.4.0+0"
 # ╟─ff9e274c-ea96-4822-a4dd-504d80fb06ca
 # ╟─940588f7-14c9-4fa1-b3e3-99cbd5ec1181
 # ╟─084979e4-40f5-47b3-aa74-0b46df83a9f1
-# ╟─9093a822-2134-48f8-a4a1-d65da07cdd12
+# ╠═9093a822-2134-48f8-a4a1-d65da07cdd12
 # ╟─aed6a1ce-b36d-4e7d-8f40-dd5e61189164
 # ╟─cdb99cfb-8517-4c4c-ad02-62edf119e386
 # ╟─4844aac5-6fc2-4f81-85b4-89481f5df0e4
-# ╟─0bcee373-b26d-4b4a-ba8c-541ac7a20b71
+# ╠═0bcee373-b26d-4b4a-ba8c-541ac7a20b71
 # ╟─ed44ce2a-9e3b-4ba0-bc98-9695baea7c0a
 # ╟─e02a5553-36e5-4a99-bd5a-584fbd92d964
 # ╟─97562119-208a-4790-a700-c59e2179eae5
-# ╟─c053be30-c7ae-4fa5-adb8-f3c8538566a9
 # ╟─c456bb5d-b667-4b1e-9cec-a97bbac752bf
-# ╟─9dd5989a-340b-4834-a814-2e67baa28589
-# ╟─a37829de-5b3d-41dd-85b7-10a18f2f2f98
-# ╟─e2a30a85-1d67-4b17-9d84-36cdc2d60659
+# ╠═9dd5989a-340b-4834-a814-2e67baa28589
+# ╠═a37829de-5b3d-41dd-85b7-10a18f2f2f98
+# ╠═c053be30-c7ae-4fa5-adb8-f3c8538566a9
+# ╠═e2a30a85-1d67-4b17-9d84-36cdc2d60659
+# ╟─a9f88d5c-e2b0-4582-9090-aab561ba5008
+# ╟─78371f1c-7b30-489a-8666-5e82cfd14663
+# ╟─b4f535b1-3951-470b-b6c5-01cea2e0af32
+# ╟─b3782d37-aed8-410c-8dc9-14ec336107e3
+# ╠═c37b659c-4795-40ed-91ca-c321274889f0
+# ╠═78431860-d5fd-4ec2-9692-910271ec5fbb
+# ╠═3606abb2-2947-4e8c-9de6-c2f360da8224
+# ╠═f9e37363-b409-4931-9711-25592900219d
 # ╟─00000000-0000-0000-0000-000000000001
 # ╟─00000000-0000-0000-0000-000000000002
