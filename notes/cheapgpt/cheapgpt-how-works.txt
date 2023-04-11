@@ -5,6 +5,16 @@ n-grams: tokens.
 
 Hugh Kenner: "travesty generator"
 
+Typed in input text ("who's on first")
+
+
+cheapΓΠΤ
+
+
+Perfect hexameters !  Why?
+
+
+
 
 CHEAPGPT
 

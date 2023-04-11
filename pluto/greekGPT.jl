@@ -235,7 +235,7 @@ StatsBase = "~0.33.21"
 PLUTO_MANIFEST_TOML_CONTENTS = """
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.8.4"
+julia_version = "1.8.5"
 manifest_format = "2.0"
 project_hash = "0a997c9cdfa0d8be45613ad266dbe4c92012f088"
 
@@ -675,7 +675,7 @@ version = "17.4.0+0"
 # ╟─084979e4-40f5-47b3-aa74-0b46df83a9f1
 # ╟─9093a822-2134-48f8-a4a1-d65da07cdd12
 # ╟─aed6a1ce-b36d-4e7d-8f40-dd5e61189164
-# ╠═cdb99cfb-8517-4c4c-ad02-62edf119e386
+# ╟─cdb99cfb-8517-4c4c-ad02-62edf119e386
 # ╟─4844aac5-6fc2-4f81-85b4-89481f5df0e4
 # ╟─0bcee373-b26d-4b4a-ba8c-541ac7a20b71
 # ╟─ed44ce2a-9e3b-4ba0-bc98-9695baea7c0a

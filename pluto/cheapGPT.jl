@@ -36,6 +36,12 @@ md"""*Length of text to generate (in words)* $(@bind iters Slider(50:50:500, sho
 
 *(re)generate*: $(@bind doit Button(\"Generate text\"))"""
 
+# ╔═╡ 084979e4-40f5-47b3-aa74-0b46df83a9f1
+# ╠═╡ disabled = true
+#=╠═╡
+@bind prompt TextField((40,8))
+  ╠═╡ =#
+
 # ╔═╡ aed6a1ce-b36d-4e7d-8f40-dd5e61189164
 md"""> Data"""
 
@@ -45,7 +51,8 @@ urlmenu = [
 	"https://github.com/neelsmith/bio114/raw/main/data/gutenberg/Gutenberg-Gibbon-25717-0.txt" => "Gibbon, Decline and Fall",
 	"https://github.com/neelsmith/bio114/raw/main/data/gutenberg/Gutenberg-MelvilleMB2701-0.txt" => "Melville, Moby Dick",
 	"https://raw.githubusercontent.com/neelsmith/bio114/main/data/gutenberg/GutenbergAustenPP-pg1342.txt" => "Austen, Pride and Prejudice",
-	"https://raw.githubusercontent.com/neelsmith/bio114/main/data/bibles/eng-kjv_vpl.txt" => "King James Bible"
+	"https://raw.githubusercontent.com/neelsmith/bio114/main/data/bibles/eng-kjv_vpl.txt" => "King James Bible",
+	"https://raw.githubusercontent.com/neelsmith/bio114/main/data/who.txt" => "Who's on first?"
 	
 ]
 
@@ -212,6 +219,9 @@ tinyngrams = slidingwindow(words, n = tinyn)[3000:6000]
 # ╔═╡ c37b659c-4795-40ed-91ca-c321274889f0
 tinyseq = ngnext(tinyngrams)
 
+# ╔═╡ 78431860-d5fd-4ec2-9692-910271ec5fbb
+prompt = "mind how long precisely—having little or no money"
+
 # ╔═╡ 9093a822-2134-48f8-a4a1-d65da07cdd12
 let doit
 	if ! isempty(f)
@@ -231,15 +241,6 @@ begin
 	nxtv = tinyngrams[context]
 end
 =#
-
-# ╔═╡ 084979e4-40f5-47b3-aa74-0b46df83a9f1
-# ╠═╡ disabled = true
-#=╠═╡
-@bind prompt TextField((40,8))
-  ╠═╡ =#
-
-# ╔═╡ 78431860-d5fd-4ec2-9692-910271ec5fbb
-prompt = "mind how long precisely—having little or no money"
 
 # ╔═╡ 00000000-0000-0000-0000-000000000001
 PLUTO_PROJECT_TOML_CONTENTS = """
@@ -699,7 +700,7 @@ version = "17.4.0+0"
 # ╟─ff9e274c-ea96-4822-a4dd-504d80fb06ca
 # ╟─940588f7-14c9-4fa1-b3e3-99cbd5ec1181
 # ╟─084979e4-40f5-47b3-aa74-0b46df83a9f1
-# ╠═9093a822-2134-48f8-a4a1-d65da07cdd12
+# ╟─9093a822-2134-48f8-a4a1-d65da07cdd12
 # ╟─aed6a1ce-b36d-4e7d-8f40-dd5e61189164
 # ╟─cdb99cfb-8517-4c4c-ad02-62edf119e386
 # ╟─4844aac5-6fc2-4f81-85b4-89481f5df0e4
